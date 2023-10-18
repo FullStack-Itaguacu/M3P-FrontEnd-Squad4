@@ -55,11 +55,10 @@ const Right = styled.div`
 const Input = styled.input`
   border: none;
   outline: none;
-  font-size: .9rem;  
+  font-size: 0.9rem;
   color: black;
   font-weight: 500;
 `;
-
 
 const SearchContainer = styled.div`
   display: flex;
@@ -75,8 +74,6 @@ const FaSistrixIcon = styled(FaSistrix)`
   color: gray;
   font-size: 1.5rem;
   font-weight: 600;
- 
-  
 `;
 
 const MinhasCompras = styled.div`
@@ -95,7 +92,7 @@ const MinhasCompras = styled.div`
 `;
 
 const Login = styled.div`
-  margin-left: 40px;
+  margin-right: 40px;
   color: #014b7b;
   background-color: #fff;
   border-radius: 15px;
@@ -106,12 +103,27 @@ const Login = styled.div`
 `;
 
 const Cart = styled.div`
-  color: white;
+  margin-right: 35px;
+  background-color: #fff;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  border-radius: 50%;
+  color: #014b7b;
   font-size: 1.5rem;
   font-weight: 600;
   cursor: pointer;
-  padding: 5px 10px;
+  padding: 10px;
   transition: all 0.5s ease;
+  &:hover {
+    transform: scale(1.1);
+  }
+`;
+
+const Sair = styled.div`
+  color: white;
+  transition: all 0.5s ease;
+  cursor: pointer;
   &:hover {
     transform: scale(1.1);
   }
@@ -130,9 +142,10 @@ const Navbar = () => {
         <Center>
           <SearchContainer>
             <Input placeholder="O que está procurando?" />
-            
-            <FaSistrixIcon><FaSistrix /></FaSistrixIcon>
-            
+
+            <FaSistrixIcon>
+              <FaSistrix />
+            </FaSistrixIcon>
           </SearchContainer>
         </Center>
 
@@ -142,6 +155,7 @@ const Navbar = () => {
             <FaCartShopping />
           </Cart>
           <Login>Login</Login>
+          <Sair>Sair</Sair>
         </Right>
       </Wrapper>
     </Container>
