@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { FaSistrix, FaCartShopping } from "react-icons/fa6";
 import logo from "../img/logo-pha.png";
@@ -129,7 +129,15 @@ const Sair = styled.div`
   }
 `;
 
-const Navbar = () => {
+const Navbar = ({ changeSearch }) => {
+  const [valueSearch, setValueSearch] = useState('');
+
+  const changeValueSearch = (event) => {
+    let newValue = event.target.value;
+    setValueSearch(newValue);
+    changeSearch('newValueSearch', newValue);
+  };
+
   return (
     <Container>
       <Wrapper>
@@ -141,8 +149,11 @@ const Navbar = () => {
 
         <Center>
           <SearchContainer>
-            <Input placeholder="O que está procurando?" />
-
+            <Input
+              placeholder="O que está procurando?"
+              value={valueSearch}
+              onChange={changeValueSearch}
+            />
             <FaSistrixIcon>
               <FaSistrix />
             </FaSistrixIcon>
