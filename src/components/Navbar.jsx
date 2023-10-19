@@ -7,6 +7,10 @@ const Container = styled.div`
   background-color: #014b7b;
   height: 70px;
   width: 100%;
+ position: fixed;
+  top: 0;
+  z-index: 999;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 `;
 
 const Wrapper = styled.div`
