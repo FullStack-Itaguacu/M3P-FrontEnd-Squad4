@@ -25,5 +25,5 @@ export const sliderItems = [
     }          
   ];
 
-  //IMPORTANTE: imagens tiradas do site da Panvel, usadas apenas para fins de estudo e sem fins lucrativos.
+  //IMPORTANTE: imagens tiradas do site da Panvel, usadas apenas para fins de estudo e sem fins lucrativos ou comerciais (https://www.panvel.com/).
   
