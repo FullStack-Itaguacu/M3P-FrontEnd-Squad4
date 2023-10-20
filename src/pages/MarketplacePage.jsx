@@ -1,12 +1,14 @@
 import React from "react";
 import Navbar from "../components/Navbar";
 import Slider from "../components/Slider";
+import Sidebar from "../components/Sidebar";
 
 const MarketplacePage = () => {
   return (
     <div>
-    <Navbar/>
-    <Slider/>
+      <Navbar />
+      <Sidebar />
+      <Slider />
     </div>
   )
 }
