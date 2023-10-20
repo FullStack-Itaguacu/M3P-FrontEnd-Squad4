@@ -5,10 +5,11 @@ import { useState } from "react";
 
 const Container = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 60vh;
   display: flex;
   position: relative;
   overflow: hidden;
+  margin-top: 60px;
 `;
 
 const Arrow = styled.div`
@@ -56,6 +57,7 @@ const Image = styled.img`
   align-items: center;
   justify-content: center;
   width: 100%;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
 `;
 
 const Slider = () => {
