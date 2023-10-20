@@ -4,6 +4,7 @@ import Slider from "../components/Slider";
 import Title from "../components/Title";
 import Products from "../components/Products";
 import ExtraCardsInfo from "../components/ExtraCardsInfo";
+import Footer from "../components/Footer";
 
 const MarketplacePage = () => {
   return (
@@ -13,6 +14,7 @@ const MarketplacePage = () => {
       <Title />
       <Products />
       <ExtraCardsInfo />
+      <Footer />
     </div>
   );
 };
