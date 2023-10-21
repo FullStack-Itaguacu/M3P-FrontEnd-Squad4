@@ -7,7 +7,7 @@ const Container = styled.div`
   width: 100%;
   height: 60vh;
   display: flex;
-  position: relative;
+  position: fixed;
   overflow: hidden;
   margin-top: 60px;
 `;
