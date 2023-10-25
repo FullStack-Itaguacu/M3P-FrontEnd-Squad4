@@ -1,9 +1,11 @@
 import MarketplacePage from "./pages/MarketplacePage";  
+import Product from "./pages/Product";  
 
 const App = () => {
 
     return (
-        <MarketplacePage />
+        
+        <Product />
     );
 }
 
