@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const Container = styled.div`
     max-width: 100%;
-    margin: 10px;
+    margin-left: 50px;
     padding: 10px;
     text-align: left;
     display: flex;
@@ -12,15 +12,16 @@ const Container = styled.div`
 `;
 
 const Title = styled.h2`
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+    margin-top: 20px;
 `;
 
 const Form = styled.form`
     display: flex;
     flex-wrap: wrap;
     justify-content: baseline;
-    width: 90%;
-    margin-left: 100px;
+    width: 100%;
+    margin-left: 50px;
     font-size: 0.9em;
 `;
 
@@ -34,22 +35,22 @@ const ContainerDiv = styled.div`
 `;
 
 const Label = styled.label`
-    margin-bottom: 2px;
+    margin-bottom: 1px;
 `;
 
 const Input = styled.input`
-    width: 90%;
-    padding: 8px;
+    width: 100%;
+    padding: 5px;
 `;
 
 const Select = styled.select`
-    width: 55%;
-    padding: 8px;
+    width: 100%;
+    padding: 5px;
     font-size: 0.9em;
 `;
 
 const ContainerTextArea = styled.div`
-    width: 300px;
+    width: 650px;
     display: flex;
     flex-direction: column;
     margin: 10px;
@@ -57,12 +58,12 @@ const ContainerTextArea = styled.div`
 `;
 
 const TextArea = styled.textarea`
-    width: 90%;
-    padding: 8px;
+    width: 98%;
+    padding: 5px;
 `;
 
 const ContainerButton = styled.div`
-    width: 100px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     margin: 10px;
@@ -115,25 +116,25 @@ function RegisterProduct() {
         e.preventDefault();
 
         // Validação dos campos do formulário
-        if(!name){
+        if(!product.name){
             alert('O campo nome deve ser preenchido')
         }
-        if(!labName){
+        if(!product.labName){
             alert('O campo nome do laboratório deve ser preenchido')
         }
-        if(!imageLink){
+        if(!product.imageLink){
             alert('O campo imagem deve ser preenchido')
         }
-        if(!dosage){
+        if(!product.dosage){
             alert('O campo dosagem deve ser preenchido')
         }
-        if(!typeProduct){
+        if(!product.typeProduct){
             alert('O campo tipo do produto deve ser preenchido')
         }
-        if(!unitPrice){
+        if(!product.unitPrice){
             alert('O campo preço unitário deve ser preenchido')
         }
-        if(!quantity){
+        if(!product.quantity){
             alert('O campo quantidade deve ser preenchido')
         }
 
