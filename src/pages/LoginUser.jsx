@@ -155,7 +155,7 @@ const LoginUser = () => {
         <LeftColumn>
           <LoginTitle>Seja bem-vindo!<br />O Futuro da Saúde Começa Aqui! </LoginTitle>
           <Title>Venda com Confiança: <br />Escolha uma Empresa Líder!</Title>
-          <a href="/acesse">Acesse sua loja aqui</a>
+          <a href="/admin/login">Acesse sua loja aqui</a>
         </LeftColumn>
 
         <RightColumn>
