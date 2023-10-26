@@ -2,16 +2,18 @@ import React, { useState, useEffect } from "react"
 import styled from "styled-components";
 
 const Container = styled.div`
-    max-width: 800px;
-    margin: 0 auto;
+    max-width: 100%;
+    margin-left: 50px;
     padding: 20px;
 `;
 const Title = styled.h2`
     text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
 `;
 const SearchInput = styled.input`
-    width: 100%;
-    padding: 8px;
+    width: 30%;
+    padding: 5px;
     margin-bottom: 20px;
 `;
 const StyledTable = styled.table`
@@ -23,7 +25,7 @@ const StyledTable = styled.table`
     th,
     td {
         border: 1px solid #ddd;
-        padding: 8px;
+        padding: 5px;
         text-align: left;
     }
     tr:nth-child(even) {
