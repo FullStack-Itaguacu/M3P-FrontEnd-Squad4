@@ -5,6 +5,7 @@ import Product from "./pages/Product";
 import Cart from "./pages/Cart";
 import LoginUser from './pages/LoginUser'
 import AdminLoginPage from "./pages/AdminLoginPage";
+import UserSignup from "./pages/UserSignup";
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
         <Route path="/cart" element={<Cart />} />
         <Route path="/user/login" element={<LoginUser />} />
         <Route path="/admin/login" element={<AdminLoginPage />} />
+        <Route path="/user/signup" element={<UserSignup />} />
       </Routes>
     </Router>
   );
