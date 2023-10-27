@@ -1,7 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import { FaSistrix, FaCartShopping } from "react-icons/fa6";
+import { FaSistrix, FaCartShopping, FaCircle } from "react-icons/fa6";
 import logo from "../img/logo-pha.png";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Container = styled.div`
   background-color: #014b7b;
@@ -106,19 +108,42 @@ const Login = styled.div`
   padding: 5px 10px;
 `;
 
-const Cart = styled.div`
-  margin-right: 35px;
-  background-color: #fff;
-  align-items: center;
-  justify-content: center;
-  display: flex;
-  border-radius: 50%;
+const CartLink = styled(Link)`
+  text-decoration: none;
   color: #014b7b;
   font-size: 1.5rem;
   font-weight: 600;
   cursor: pointer;
-  padding: 10px;
-  transition: all 0.5s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const Cart = styled.div`
+  margin-right: 35px;
+  background-color: #fff;
+  border-radius: 50%;
+  cursor: pointer;
+  padding: 11px 11px;
+  position: relative;
+  span {
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-weight: 600;
+    color: white;
+    background-color: red;
+    border-radius: 50%;
+    padding: 3px 8px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-top: -7px;
+    margin-right: -7px;
+  }
+
   &:hover {
     transform: scale(1.1);
   }
@@ -134,6 +159,8 @@ const Sair = styled.div`
 `;
 
 const Navbar = () => {
+  const quantity = useSelector ((state) => state.cart.quantity );
+
   return (
     <Container>
       <Wrapper>
@@ -156,7 +183,10 @@ const Navbar = () => {
         <Right>
           <MinhasCompras>Minhas Compras</MinhasCompras>
           <Cart>
-            <FaCartShopping />
+            <CartLink to="/cart">
+              <FaCartShopping />
+            </CartLink>
+            {quantity > 0 && <span>{quantity}</span>}
           </Cart>
           <Login>Login</Login>
           <Sair>Sair</Sair>
