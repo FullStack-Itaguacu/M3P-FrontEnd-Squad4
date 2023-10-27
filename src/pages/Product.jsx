@@ -1,8 +1,13 @@
+//http://localhost:5173/product/1
 import { FaPlus, FaMinus } from "react-icons/fa";
 import styled from "styled-components";
 
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
+import { useState } from "react";
+import { addProduct } from "../redux/cartRedux";
+import { useDispatch } from "react-redux";
+
 
 const Container = styled.div``;
 
@@ -95,12 +100,14 @@ const IconMinus = styled(FaMinus)`
   width: 20px;
   height: 40px;
   margin-right: 10px;
+  cursor: pointer;
 `;
 
 const IconPlus = styled(FaPlus)`
   width: 20px;
   height: 40px;
   margin-left: 10px;
+  cursor: pointer;
 `;
 
 const Button = styled.button`
@@ -123,6 +130,27 @@ const Button = styled.button`
 `;
 
 const Product = () => {
+
+  const [quantity, setQuantity] = useState(1);
+  const [product, setProduct] = useState({});
+  const dispatch = useDispatch();
+
+
+  
+  const handleQuantity = (type) => {
+    if (type === "dec") {
+      quantity > 1 && setQuantity(quantity - 1);
+    } else {
+      setQuantity(quantity + 1);
+    }
+  };
+
+  const handleClick = () => {
+    dispatch(
+      addProduct({ quantity })
+    );
+  };
+
   return (
     <Container>
       <Navbar />
@@ -143,15 +171,11 @@ const Product = () => {
           <AddContainer>
             <Quantity>Quantidade:</Quantity>
             <AmountContainer>
-              <IconMinus>
-                <FaMinus />
-              </IconMinus>
-              <Amount>1</Amount>
-              <IconPlus>
-                <FaPlus />
-              </IconPlus>
+              <IconMinus onClick={() => handleQuantity("dec")} />
+              <Amount>{quantity}</Amount>
+              <IconPlus onClick={() => handleQuantity("inc")} />
             </AmountContainer>
-            <Button>Colocar no carrinho</Button>
+            <Button onClick={handleClick}>Colocar no carrinho</Button>
           </AddContainer>
         </InfoContainer>
       </Wrapper>
