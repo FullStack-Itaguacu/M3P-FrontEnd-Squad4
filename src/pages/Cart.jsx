@@ -1,6 +1,5 @@
 import { FaPlus, FaMinus } from "react-icons/fa";
 import styled from "styled-components";
-
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 
@@ -9,7 +8,6 @@ const Container = styled.div``;
 
 const Wrapper = styled.div`
   padding: 20px;
-
 `;
 
 const Title = styled.h1`
@@ -76,7 +74,6 @@ const Details = styled.div`
 
 const ProductName = styled.span``;
 
-
 const PriceDetail = styled.div`
   flex: 1;
   display: flex;
@@ -94,13 +91,11 @@ const ProductAmountContainer = styled.div`
 const ProductAmount = styled.div`
   font-size: 24px;
   margin: 5px;
-
 `;
 
 const ProductPrice = styled.div`
   font-size: 30px;
   font-weight: 200;
-
 `;
 
 const Hr = styled.hr`
