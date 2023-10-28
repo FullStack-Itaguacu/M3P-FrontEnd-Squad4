@@ -98,7 +98,7 @@ function RegisterProduct() {
         typeProduct: "",
         unitPrice: "",
         description: "",
-        quantity: "",
+        totalStock: "",
     });
 
     const [message, setMessage] = useState("");
@@ -134,7 +134,7 @@ function RegisterProduct() {
         if(!product.unitPrice){
             alert('O campo preço unitário deve ser preenchido')
         }
-        if(!product.quantity){
+        if(!product.totalStock){
             alert('O campo quantidade deve ser preenchido')
         }
 
@@ -149,9 +149,15 @@ function RegisterProduct() {
 
     async function sendDataToServer(productData) {
         try {
-            const response = await fetch("/api/products/admin", {
+            //Recupera o token do localStorage
+            const token = localStorage.getItem('token')
+
+            const response = await fetch("http://localhost:3333/api/products/admin", {
                 method: "POST",
-                headers: {"Content-Type": "application/json"},
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": token,
+                },
                 body: JSON.stringify(productData),
             });
   
@@ -250,8 +256,8 @@ function RegisterProduct() {
                     <Label>Quantidade</Label>
                     <Input
                         type="number"
-                        name="quantity"
-                        value={product.quantity}
+                        name="totalStock"
+                        value={product.totalStock}
                         onChange={handleInputChange}
                         required
                     />
