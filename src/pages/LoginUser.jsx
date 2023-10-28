@@ -4,9 +4,12 @@ import logo from "../img/logo-pha.png";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from 'yup';
 import { useForm } from "react-hook-form";
-import axios from 'axios';
 import Header from '../components/Header';
-//import { useHistory } from 'react-router-dom; Para redirecionar o usuário para a página inicial do Marketplace
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+
 
 // Definição do estilo para o contêiner principal
 const Container = styled.div`
@@ -104,7 +107,7 @@ const ErrorSpan = styled.span`
   font-size: 10px;
 `;
 
-
+//Validação
 const schema = yup.object().shape({
   email: yup
     .string()
@@ -122,45 +125,67 @@ const schema = yup.object().shape({
 });
 
 const LoginUser = () => {
+  const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState("");
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
-  //const history = useHistory(); Para redirecionar o usuário para a página inicial do Marketplace
-
-  const loginUser = async (data) => {
+  const login = async (formData) => {
     try {
-      const response = await axios.post('http://localhost:3333/api/user/login', data);
+      const data = {
+        email: formData.email,
+        password: formData.password,
+      };
 
-      if (response.data.success) {
-        // Dados de login válidos, redirecione para a página desejada.
-        history.push('/pagina-desejada');
-      } else {
-        // Senha ou email incorretos, apresente a mensagem de erro.
-        console.error('Usuário ou senha inválida');
+      const response = await axios.post('http://localhost:3333/api/user/login', data, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      console.log("Resposta do servidor:", response.data);
+
+      // Armazena o token retornado no localStorage
+      const token = response.data.token;
+      console.log("Token recebido:", token);
+      localStorage.setItem('token', token);
+
+      // Redireciona o usuário para a página MarketPlace
+      navigate('/');
+
+      // Trata o caso em que o login falhou
+      if (setErrorMessage) {
+        setErrorMessage('Usuário ou senha inválida.');
       }
+
     } catch (error) {
-      // Erro na chamada da API.
-      console.error('Erro na chamada da API');
+      console.log("Erro ao fazer login:", error);
+
+      if (error.response && error.response.status === 401) {
+        alert("Usuário ou senha inválida.");
+      } else {
+        alert("Erro ao fazer login. Tente novamente mais tarde ou entre em contato com o suporte.");
+      }
     }
   };
-  
+
   return (
     <>
-     <Header />
-      <form action="post" onSubmit={handleSubmit}></form>
+      <Header />
       <Container>
         <LeftColumn>
           <LoginTitle>Seja bem-vindo!<br />O Futuro da Saúde Começa Aqui! </LoginTitle>
           <Title>Venda com Confiança: <br />Escolha uma Empresa Líder!</Title>
-          <a href="/admin/login">Acesse sua loja aqui</a>
+          <Link to="/admin/login">Acesse sua loja aqui</Link>
         </LeftColumn>
 
         <RightColumn>
           <img src={logo} alt="logo" width="70px" height="70px" />
-          <LoginForm onSubmit={handleSubmit(loginUser)}>
+          <LoginForm onSubmit={handleSubmit(login)}>
             <FormGroup>
               <FormControlLabel className="form-control-label">EMAIL</FormControlLabel>
               <Input type="email"
@@ -185,7 +210,7 @@ const LoginUser = () => {
               <BtnOutlinePrimary type="submit">LOGIN</BtnOutlinePrimary>
             </LoginBttm>
             <div style={{ textAlign: 'center', marginTop: '50px' }}>
-              <a href="/cadastrar">Ainda não tem conta? Cadastre-se aqui!</a>
+            <Link to="/user/signup">Ainda não tem conta? Cadastre-se aqui!</Link>
             </div>
           </LoginForm>
         </RightColumn>
