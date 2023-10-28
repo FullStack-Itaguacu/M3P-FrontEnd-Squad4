@@ -33,17 +33,26 @@ function InitialPageAdmin(){
     const [error, setError] = useState(null);
 
     useEffect(() => {
+        // Recupera o token do localStorage
+        const token = localStorage.getItem('token');
         const fetchData = async () => {
             try {
-                //const response = await fetch("http://localhost:3333/api/sales/dashboard/admin");
-                //if (!response.ok) {
-                    //throw new Error("Erro na solicitação GET");
-                //}
+                
+                const response = await fetch("http://localhost:3333/api/sales/dashboard/admin", {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": token,
+                    },
+                });
+                if (!response.ok) {
+                    throw new Error("Erro na solicitação GET");
+                }
 
-                //const data = await response.json();
-                //setTotalSales(data.totalSales);
-                //setTotalQuantity(data.totalAmount);
-                //setError(null);
+                const data = await response.json();
+                setTotalSales(data.totalSales);
+                setTotalQuantity(data.totalAmount);
+                setError(null);
             } catch (error) {
                 setError("Erro ao buscar dados do dashboard. Por favor, tente novamente mais tarde.");
                 console.error("Erro ao buscar dados do dashboard: ", error);
