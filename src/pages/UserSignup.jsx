@@ -4,8 +4,9 @@ import InputMask from 'react-input-mask';
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from 'yup';
 import Header from '../components/Header';
-import React, { useState } from "react";
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
 
 // Estilização do contêiner principal
 const Container = styled.div`
@@ -96,16 +97,17 @@ const ErrorSpan = styled.span`
   font-size: 10px;
 `;
 
-
+//esquema de validação
 const schema = yup.object().shape({
-    cpf: yup
-        .string()
-        .required('Campo Obrigatório')
-        .matches(/^\d{3}\.\d{3}\.\d{3}-\d{2}$/, 'CPF inválido'),
 
     fullName: yup
         .string()
         .required('Campo Obrigatório'),
+
+    cpf: yup
+        .string()
+        .required('Campo Obrigatório')
+        .matches(/^\d{3}\.\d{3}\.\d{3}-\d{2}$/, 'CPF inválido'),
 
     birthDate: yup
         .string()
@@ -155,8 +157,8 @@ const schema = yup.object().shape({
         .required('Campo Obrigatório'),
 });
 
-
 const UserSignup = () => {
+    const navigate = useNavigate();
     const {
         register,
         setValue,
@@ -164,9 +166,6 @@ const UserSignup = () => {
         setFocus,
         formState: { errors },
     } = useForm({ resolver: yupResolver(schema) });
-
-    const [successMessage, setSuccessMessage] = useState('');
-    const [errorMessage, setErrorMessage] = useState('');
 
     //API CEP
     const checkZip = (e) => {
@@ -184,19 +183,68 @@ const UserSignup = () => {
             });
     };
 
-    const onSubmit = async (data) => {
+    const onSubmit = async (formData) => {
         try {
-            const response = await axios.post("http://localhost:3333/api/user/signup", data);
+            // Formata a data de nascimento
+            const formattedBirthDate = formatBirthDate(formData.birthDate);
 
-            if (response.status === 201) {
-                setSuccessMessage('Seu cadastro foi realizado com sucesso.');
-            } else {
-                setErrorMessage('Erro ao cadastrar. Tente novamente mais tarde ou entre em contato com o suporte.');
+            if (!formattedBirthDate) {
+                setErrorMessage('Data de nascimento inválida.');
+                return;
             }
+            const data = {
+                user: {
+                    fullName: formData.fullName,
+                    cpf: formData.cpf.replace(/\D/g, ""),
+                    birthDate: formattedBirthDate, // Use a data formatada aqui
+                    email: formData.email,
+                    password: formData.password,
+                    phone: formData.phone.replace(/\D/g, ""),
+                },
+                address: [{
+                    zip: formData.zip,
+                    street: formData.street,
+                    numberStreet: formData.numberStreet.replace(/\D/g, ""),
+                    neighborhood: formData.neighborhood,
+                    city: formData.city,
+                    state: formData.state,
+                    complement: formData.complement,
+                    lat: formData.lat,
+                    long: formData.long.replace(/\D/g, ""),
+                }]
+            };
+
+            const response = await axios.post('http://localhost:3333/api/user/signup', data, {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+
+            console.log("Resposta do servidor:", response.data);
+            alert("Seu cadastro foi realizado com sucesso.");
+            // Redireciona o usuário para a página de login após um cadastro bem-sucedido
+            navigate('/user/login');
         } catch (error) {
-            setErrorMessage('Erro ao cadastrar. Tente novamente mais tarde ou entre em contato com o suporte.');
+            console.log("Erro ao cadastrar:", error);
+
+            if (error.response.status === 409) {
+                alert("E-mail já cadastrado, tente contato com o suporte.");
+            } else {
+                alert("Erro ao cadastrar. Tente novamente mais tarde ou entre em contato com o suporte.");
+            }
         }
     };
+
+    // Função para formatar a data no formato "AAAA-MM-DD"
+    function formatBirthDate(dateString) {
+        const parts = dateString.split('/');
+        if (parts.length === 3) {
+            const [day, month, year] = parts;
+            const formattedDate = `${year}-${month}-${day}`;
+            return formattedDate;
+        }
+        return null; // Retorne null se a data for inválida
+    }
 
     return (
         <>
