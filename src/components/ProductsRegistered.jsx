@@ -57,27 +57,56 @@ function ProductsRegistered() {
     const [filteredProducts, setFilteredProducts] = useState([]);
     const [showModal, setShowModal] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState(null);
+    const [searchParams, setSearchParams] = useState({ name: '', typeProduct: '', totalStock: "" });
 
     useEffect(() => {
-        // Fazer uma solicitação GET para obter a lista de produtos do banco de dados
-        fetch("http://localhost:3333/api/products/admin/0/20")
-          .then((response) => response.json())
-          .then((data) => {
-            setProducts(data);
-            setFilteredProducts(data);
-          })
-          .catch((error) => console.error("Erro ao buscar produtos: ", error));
-    }, []);
+        const fetchData = async () => {
+            // Recupera o token do localStorage
+            const token = localStorage.getItem('token');
+        
+            // Construa os parâmetros da consulta com base no estado
+            const queryParams = new URLSearchParams(searchParams);
+        
+            // Crie a URL com os parâmetros da consulta
+            const url = `http://localhost:3333/api/products/admin/0/20?${queryParams.toString()}`;
+        
+            try {
+                // Fazer uma solicitação GET para obter a lista de produtos do banco de dados
+                const response = await fetch(url, {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": token,
+                    },        
+                });
+            
+                if (!response.ok) {
+                    throw new Error(`Erro ao buscar produtos: ${response.status}`);
+                }
+                const data = response.json();
+                setProducts(data);
+                setFilteredProducts(data);
+          
+            } catch (error) {
+                console.error("Erro ao buscar produtos: ", error);
+            }
+        };
+        fetchData();            
+    }, [searchParams]);
 
     const handleSearch = (e) => {
         const searchTerm = e.target.value.toLowerCase();
-        const filtered = products.filter(
-          (product) =>
-            product.name.toLowerCase().includes(searchTerm) ||
-            product.productType.toLowerCase().includes(searchTerm)
-        );
-        setFilteredProducts(filtered);
-    };
+        
+        if (products.data && Array.isArray(products.data.rows)) {
+            const filtered = products.data.rows.filter((product) => {
+                const name = (product.name || '').toLowerCase();
+                const productType = (product.productType || '').toLowerCase();
+                
+                return name.includes(searchTerm) || productType.includes(searchTerm);
+            });                
+            setFilteredProducts(filtered);
+        };
+    }
 
     const handleShowModal = (product) => {
         setSelectedProduct(product);
@@ -110,20 +139,26 @@ function ProductsRegistered() {
                     </tr>
                 </thead>
                 <tbody>
-                    {filteredProducts.map((product) => (
-                        <tr key={product.id}>
-                            <td>{product.id}</td>
-                            <td>{product.name}</td>
-                            <td>{product.dosage}</td>
-                            <td>{product.productType}</td>
-                            <td>{product.unitPrice}</td>
-                            <td>{product.description || "-"}</td>
-                            <td>{product.quantity}</td>
-                            <td>
-                                <button onClick={() => handleShowModal(product)}>Editar</button>
-                            </td>
-                        </tr>
-                    ))}
+                    {Array.isArray(filteredProducts) && filteredProducts.length > 0 ? (
+                        filteredProducts.map((product) => (
+                            <tr key={product.id}>
+                                <td>{product.id}</td>
+                                <td>{product.name}</td>
+                                <td>{product.dosage}</td>
+                                <td>{product.productType}</td>
+                                <td>{product.unitPrice}</td>
+                                <td>{product.description || "-"}</td>
+                                <td>{product.quantity}</td>
+                                <td>
+                                    <button onClick={() => handleShowModal(product)}>Editar</button>
+                                </td>
+                            </tr>
+                        ))
+                    ) : (
+                        <tr>
+                            <td colSpan="8">Nenhum produto encontrado</td>
+                        </tr>            
+                    )}
                 </tbody>
             </StyledTable>
             <Modal show = {showModal}>
