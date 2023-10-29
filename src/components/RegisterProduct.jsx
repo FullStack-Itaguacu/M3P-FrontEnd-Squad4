@@ -116,33 +116,57 @@ function RegisterProduct() {
         e.preventDefault();
 
         // Validação dos campos do formulário
-        if(!product.name){
-            alert('O campo nome deve ser preenchido')
+        if (!product.name) {
+            alert("O campo nome deve ser preenchido");
+            return;
         }
-        if(!product.labName){
-            alert('O campo nome do laboratório deve ser preenchido')
+        if (!product.labName) {
+            alert("O campo nome do laboratório deve ser preenchido");
+            return;
         }
-        if(!product.imageLink){
-            alert('O campo imagem deve ser preenchido')
+        if (!product.imageLink) {
+            alert("O campo imagem deve ser preenchido");
+            return;
         }
-        if(!product.dosage){
-            alert('O campo dosagem deve ser preenchido')
+        if (!product.dosage) {
+            alert("O campo dosagem deve ser preenchido");
+            return;
         }
-        if(!product.typeProduct){
-            alert('O campo tipo do produto deve ser preenchido')
+        if (!product.typeProduct) {
+            alert("O campo tipo do produto deve ser preenchido");
+            return;
         }
-        if(!product.unitPrice){
-            alert('O campo preço unitário deve ser preenchido')
+        if (!product.unitPrice) {
+            alert("O campo preço unitário deve ser preenchido");
+            return;
         }
-        if(!product.totalStock){
-            alert('O campo quantidade deve ser preenchido')
+        if (!product.totalStock) {
+            alert("O campo quantidade deve ser preenchido");
+            return;
         }
 
         // Se todas as validações passarem, fazer uma solicitação POST para adicionar o produto ao banco de dados
         try {
             const responseMessage = await sendDataToServer(product);
             setMessage(responseMessage);
-    }    catch (error) {
+
+            // Limpar os campos do formulário
+            setProduct({
+                name: "",
+                labName: "",
+                imageLink: "",
+                dosage: "",
+                typeProduct: "",
+                unitPrice: "",
+                description: "",
+                totalStock: "",
+            });
+            // Limpar as mensagens após um breve atraso
+            setTimeout(() => {
+                setMessage("");
+                setError("");
+            }, 1000);
+        } catch (error) {
             setError(error.message);
         }
     }
