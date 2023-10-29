@@ -122,7 +122,7 @@ const schema = yup.object().shape({
         .string()
         .required('Campo Obrigatório')
         .matches(
-            /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]*$/,
+            /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#@$!%*?&])[A-Za-z\d@$!%*?&]*$/,
             'Senha inválida'
         )
         .min(8, 'A senha deve ter no mínimo 8 caracteres, letra maiúscula, minúscula, número e caractere especial'),
@@ -185,8 +185,8 @@ const UserSignup = () => {
 
     const onSubmit = async (formData) => {
         try {
-            // Formata a data de nascimento
-            const formattedBirthDate = formatBirthDate(formData.birthDate);
+            //Formata a data de nascimento
+           const formattedBirthDate = formatBirthDate(formData.birthDate);
 
             if (!formattedBirthDate) {
                 setErrorMessage('Data de nascimento inválida.');
@@ -196,7 +196,7 @@ const UserSignup = () => {
                 user: {
                     fullName: formData.fullName,
                     cpf: formData.cpf.replace(/\D/g, ""),
-                    birthDate: formattedBirthDate, // Use a data formatada aqui
+                    birthDate: formattedBirthDate, // data formatada aqui
                     email: formData.email,
                     password: formData.password,
                     phone: formData.phone.replace(/\D/g, ""),
