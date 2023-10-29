@@ -1,7 +1,35 @@
 import styled from "styled-components";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
-import { sliderItems } from "../data";
+// import { sliderItems } from "../data";
 import { useState } from "react";
+// import '../../src/img/addera.webp'
+
+const sliderItems = [
+  {
+    id: 1,
+    img: "../../src/img/addera.webp",
+  },
+
+  {
+    id: 2,
+    img: "../../src/img/eno_30.webp",
+  },
+
+  {
+  id: 3,
+  img: "../../src/img/ibuflex.webp",
+  },
+
+  {
+  id: 4,
+  img: "../../src/img/image00001.png",
+  },
+
+  {
+  id: 5,
+  img: "../../src/img/image00002.png",
+  }          
+];
 
 const Container = styled.div`
   width: 100%;
