@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react"
 import styled from "styled-components";
 
 const Container = styled.div`
-    max-width: 100%;
-    margin-left: 50px;
-    padding: 20px;
+    max-width: 77%;
+    margin-left: 200px;
+    padding-left: 20px;
+    padding-top: 20px;
 `;
 const Title = styled.h2`
     text-align: center;
@@ -122,7 +123,7 @@ function ProductsRegistered() {
             <Title>Produtos Cadastrados</Title>
             <SearchInput
                 type="text"
-                placeholder="Pesquisar por Nome do Produto ou Tipo do Produto"
+                placeholder="Pesquisar por Nome ou Tipo do Produto"
                 onChange={handleSearch}
             />
             <StyledTable>
