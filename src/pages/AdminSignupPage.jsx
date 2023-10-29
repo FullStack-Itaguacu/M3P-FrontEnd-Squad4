@@ -1,48 +1,16 @@
-import styled from "styled-components";
 import Sidebar from "../components/Sidebar";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import GlobalStyle from "../components/styled/GlobalStyle";
 import ReactInputMask from "react-input-mask";
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  background-color: whitesmoke;
-`;
-
-const H1 = styled.h1`
-  max-width: 70vw;
-  text-align: center;
-  margin: 4vh 0 6vh 19vw;
-`;
-
-const Form = styled.form`
-  background-color: gray;
-  padding: 20px;
-  max-width: 70vw;
-  margin: 0 auto 10vh 19vw;
-  border-radius: 25px;
-`;
-
-const Row = styled.div`
-  display: flex;
-`;
-
-const Column = styled.div`
-  margin: 0 10px;
-`;
-
-const Label = styled.label`
-  display: block;
-  margin-bottom: 5px;
-`;
-
-const Input = {
-  width: "100%",
-  padding: "5px",
-  marginBottom: "16px",
-};
+import ListUsers from "../components/ListUsers";
+import Container from "../components/styled/AdminPage/Container";
+import H1 from "../components/styled/AdminPage/H1";
+import Form from "../components/styled/AdminPage/Form";
+import Row from "../components/styled/AdminPage/Row";
+import Column from "../components/styled/AdminPage/Column";
+import Label from "../components/styled/AdminPage/Label";
+import { Input } from "../styles/Input";
 
 export default function AdminSignupPage() {
   const [CPF, setCPF] = useState("");
@@ -419,24 +387,21 @@ export default function AdminSignupPage() {
           </Column>
         </Row>
 
-        <Row style={{ justifyContent: "flex-end" }}>
+        <Row style={{ justifyContent: "flex-end", marginTop: "20px" }}>
           <Column>
             <input
               type="button"
               value="Buscar coordenadas"
               onClick={buscarCoordenadas}
-              style={{ ...Input, marginTop: "20px" }}
+              style={Input}
             />
           </Column>
           <Column>
-            <input
-              type="submit"
-              value="Cadastrar"
-              style={{ ...Input, marginTop: "20px" }}
-            />
+            <input type="submit" value="Cadastrar" style={Input} />
           </Column>
         </Row>
       </Form>
+      <ListUsers />
     </Container>
   );
 }
