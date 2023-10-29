@@ -38,7 +38,7 @@ function InitialPageAdmin(){
         const fetchData = async () => {
             try {
                 
-                const response = await fetch("http://localhost:3333/api/sales/dashboard/admin", {
+                const response = await fetch("https://pcs-api-56ex.onrender.com/api/sales/dashboard/admin", {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
