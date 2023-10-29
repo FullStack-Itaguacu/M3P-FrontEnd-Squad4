@@ -69,7 +69,7 @@ function ProductsRegistered() {
             const queryParams = new URLSearchParams(searchParams);
         
             // Crie a URL com os parâmetros da consulta
-            const url = `http://localhost:3333/api/products/admin/0/20?${queryParams.toString()}`;
+            const url = `https://pcs-api-56ex.onrender.com/api/products/admin/0/20?${queryParams.toString()}`;
         
             try {
                 // Fazer uma solicitação GET para obter a lista de produtos do banco de dados

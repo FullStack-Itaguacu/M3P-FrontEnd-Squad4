@@ -202,7 +202,7 @@ function RegisterProduct() {
             //Recupera o token do localStorage
             const token = localStorage.getItem('token')
 
-            const response = await fetch("http://localhost:3333/api/products/admin", {
+            const response = await fetch("https://pcs-api-56ex.onrender.com/api/products/admin", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
