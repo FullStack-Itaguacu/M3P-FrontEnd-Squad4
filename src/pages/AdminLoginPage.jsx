@@ -41,7 +41,7 @@ export default function AdminLoginPage() {
 
     try {
       const response = await axios.post(
-        "http://localhost:3333/api/admin/login",
+        "https://pcs-api-56ex.onrender.com/api/admin/login",
         {
           email: email,
           password: senha,
