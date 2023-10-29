@@ -3,39 +3,6 @@ import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
 import { sliderItems } from "../data";
 import { useState } from "react";
 
-// import imagem1 from "../../src/img/addera.webp";
-// import imagem2 from "../../src/img/eno_30.webp";
-// import imagem3 from "../../src/img/ibuflex.webp";
-// import imagem4 from "../../src/img/image00001.png";
-// import imagem5 from "../../src/img/image00002.png";
-
-// const sliderItems = [
-//   {
-//     id: 1,
-//     img: imagem1,
-//   },
-
-//   {
-//     id: 2,
-//     img: imagem2,
-//   },
-
-//   {
-//     id: 3,
-//     img: imagem3,
-//   },
-
-//   {
-//     id: 4,
-//     img: imagem4,
-//   },
-
-//   {
-//     id: 5,
-//     img: imagem5,
-//   },
-// ];
-
 const Container = styled.div`
   width: 100%;
   height: 60vh;

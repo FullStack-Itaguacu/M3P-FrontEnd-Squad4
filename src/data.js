@@ -1,8 +1,8 @@
-import imagem1 from "src/img/addera.webp";
-import imagem2 from "src/img/eno_30.webp";
-import imagem3 from "src/img/ibuflex.webp";
-import imagem4 from "src/img/image00001.png";
-import imagem5 from "src/img/image00002.png";
+import imagem1 from "./img/addera.webp";
+import imagem2 from "./img/eno_30.webp";
+import imagem3 from "./img/ibuflex.webp";
+import imagem4 from "./img/image00001.png";
+import imagem5 from "./img/image00002.png";
 
 export const sliderItems = [
   {
