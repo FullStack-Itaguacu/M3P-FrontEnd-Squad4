@@ -1,15 +1,8 @@
 import { useEffect, useState } from "react";
-import styled, { createGlobalStyle } from "styled-components";
+import styled from "styled-components";
 import axios from "axios";
 import Header from "../components/Header";
-
-const GlobalStyle = createGlobalStyle`
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-`;
+import GlobalStyle from "../components/styled/GlobalStyle";
 
 const Container = styled.div`
   height: 100vh;
@@ -64,8 +57,8 @@ export default function AdminLoginPage() {
 
   return (
     <Container>
-      <Header />
       <GlobalStyle />
+      <Header />
       <H1>Olá Administrador, efetue seu login abaixo:</H1>
       <Form action="post" onSubmit={handleSubmit}>
         <label htmlFor="email">Email:</label>
