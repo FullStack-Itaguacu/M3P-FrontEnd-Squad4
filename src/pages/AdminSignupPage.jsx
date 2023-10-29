@@ -140,6 +140,8 @@ export default function AdminSignupPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const token = localStorage.getItem("token");
+
     try {
       const response = await axios.post(
         "https://pcs-api-56ex.onrender.com/api/user/admin/signup",
@@ -166,6 +168,12 @@ export default function AdminSignupPage() {
               long: longitude,
             },
           ],
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: token,
+          },
         }
       );
       console.log("Resposta do servidor:", JSON.stringify(response.data));
@@ -175,7 +183,7 @@ export default function AdminSignupPage() {
         "Erro ao cadastrar usuário:",
         JSON.stringify(error.response.data)
       );
-      alert("Erro ao cadastrar usuário.");
+      alert(`Erro ao cadastrar usuário: ${error.response.data.cause}`);
     }
   };
 
