@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
-    max-width: 100%;
-    margin-left: 50px;
-    padding: 10px;
+    max-width: 80%;
+    margin-left: 200px;
     text-align: left;
     display: flex;
     flex-direction: column;
@@ -20,13 +19,39 @@ const Form = styled.form`
     display: flex;
     flex-wrap: wrap;
     justify-content: baseline;
-    width: 100%;
-    margin-left: 50px;
+    width: 95%;
     font-size: 0.9em;
 `;
 
 const ContainerDiv = styled.div`
-    width: 200px;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+    margin-right: 20px;
+    align-items: baseline;
+`;
+
+const ContainerDosage = styled.div`
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+    margin-right: 20px;
+    align-items: baseline;
+`;
+
+const ContainerPreco = styled.div`
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+    margin-right: 20px;
+    align-items: baseline;
+`;
+
+const ContainerQuantidade = styled.div`
+    width: 100px;
     display: flex;
     flex-direction: column;
     margin: 5px;
@@ -39,7 +64,7 @@ const Label = styled.label`
 `;
 
 const Input = styled.input`
-    width: 100%;
+    width: 90%;
     padding: 5px;
 `;
 
@@ -50,10 +75,11 @@ const Select = styled.select`
 `;
 
 const ContainerTextArea = styled.div`
-    width: 650px;
+    width: 400px;
+    height:70px;
     display: flex;
     flex-direction: column;
-    margin: 10px;
+    margin: 3px;
     align-items: baseline;
 `;
 
@@ -230,7 +256,7 @@ function RegisterProduct() {
                         required
                     />
                 </ContainerDiv>
-                <ContainerDiv>
+                <ContainerDosage>
                     <Label>Dosagem</Label>
                     <Select
                         name="dosage"
@@ -246,7 +272,7 @@ function RegisterProduct() {
                         <option value="%">%</option>
                         <option value="Outro">Outro</option>
                         </Select>
-                </ContainerDiv>
+                </ContainerDosage>
                 <ContainerDiv>
                     <Label>Tipo do Produto</Label>
                     <Select
@@ -266,7 +292,7 @@ function RegisterProduct() {
                         </option>
                     </Select>
                 </ContainerDiv>
-                <ContainerDiv>
+                <ContainerPreco>
                     <Label>Preço Unitário</Label>
                     <Input
                         type="text"
@@ -275,8 +301,8 @@ function RegisterProduct() {
                         onChange={handleInputChange}
                         required
                     />
-                </ContainerDiv>
-                <ContainerDiv>
+                </ContainerPreco>
+                <ContainerQuantidade>
                     <Label>Quantidade</Label>
                     <Input
                         type="number"
@@ -285,7 +311,7 @@ function RegisterProduct() {
                         onChange={handleInputChange}
                         required
                     />
-                </ContainerDiv>
+                </ContainerQuantidade>
                 <ContainerTextArea>
                     <Label>Descrição</Label>
                     <TextArea
