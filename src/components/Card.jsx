@@ -23,14 +23,34 @@ const P = styled.p`
     color: #555;
 `;
 
+const Footer = styled.footer`
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+`;
+
+const Img = styled.img`
+  width:30px;
+  height:30px;
+  gap: 10px;
+`;
 
 function Card({ productName, amountBuy, unitPrice, total }) {
     return (
         <Section>
             <H3>{productName}</H3>
-            <p>{amountBuy}</p>
-            <p>{unitPrice}</p>
-            <p>{total}</p>
+            <P>Quantidade: {amountBuy}</P>
+            <P>Preço Unitario: {unitPrice}</P>
+
+            <Footer>
+                <div>
+                    <P>Total: {total}</P>
+                </div>
+                <div>
+                    <Img src={imageLink} />
+                </div>
+            </Footer>
         </Section>
     )
 }

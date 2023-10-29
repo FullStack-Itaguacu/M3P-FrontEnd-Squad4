@@ -13,18 +13,60 @@ const SectionList = styled.section`
     gap: 1.8rem;
     margin-top: 3rem;
 `;
+
+const H2 = styled.h2`
+    text-align: center;
+`;
+
 function SaleAdmin() {
     const [repositories, setRepositories] = useState([]);
 
     useEffect(() => {
-        const queryApi = async () => {
-            const response = await fetch('https://fakestoreapi.com/products?limit=2')
-            const data = await response.json();
-            setRepositories(data);
-        }
-        queryApi();
-    }, [])
-    console.log(repositories);
+        const fetchData = async () => {
+          // Dados de login teste local
+        /*   const data = {
+            email: "cleyton@admin.com",
+            password: "A4&98dunH"
+          }; */
+      
+          try {
+            // Requisita e salva token usando axios
+           /*  const response = await axios.post('http://127.0.0.1:3333/api/admin/login', data, {
+              headers: {
+                'Content-Type': 'application/json',
+              },
+            });
+      
+            console.log("Resposta do servidor:", response.data);
+      
+            // Armazena o token retornado no localStorage
+            const tokenJWT = response.data.token;
+            console.log("Token recebido:", tokenJWT);
+            localStorage.setItem('token', tokenJWT); */
+      
+            // Recupera o token do localStorage
+            const token = localStorage.getItem('token');
+      
+            // Faz uma requisição à API usando fetch
+            const responseApi = await fetch('https://pcs-api-56ex.onrender.com/api/sales/admin', {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+                "Authorization": token,
+              }
+            });
+      
+            const dataApi = await responseApi.json();
+            setRepositories(dataApi);
+          } catch (error) {
+            console.error("Erro na requisição:", error);
+            alert("Erro na Requisição");
+          }
+        };
+      
+        fetchData();
+      }, []);
+    
     return (
         <section>
             <Navbar />
@@ -35,11 +77,12 @@ function SaleAdmin() {
                         {
                             repositories.map((repo) => (
                                 <Card
-                                    key={repo.id}
-                                    productName={repo.category}
-                                    amountBuy={repo.id}
-                                    unitPrice={repo.title}
-                                    total={repo.total}
+                                key={repo.id}
+                                imageLink={repo.imageLink}
+                                productName={repo.productName}
+                                amountBuy={repo.amountBuy}
+                                unitPrice={repo.unitPrice}
+                                total={repo.total}
                                 />
                             ))
                         }
