@@ -1,4 +1,9 @@
 import styled from "styled-components";
+import img1 from "../img/Ems-sem-fundo-logo.png";
+import img2 from "../img/Logo_prati.png";
+import img3 from "../img/logo-germed.png";
+import img4 from "../img/biosintetica.png";
+import img5 from "../img/generico-logo.png";
 
 const Container = styled.div`
   height: 100%;
@@ -56,27 +61,27 @@ const Image = styled.img`
 `;
 
 const Promo = styled.div`
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    h4 {
-        font-size: 2rem;
-        font-weight: 600;
-        color: white;
-        margin-top: 30px;
-        padding: 10px;
-        border: 1px solid #ccdcff;
-        border-radius: 10px;
-        background-color: #014b7b;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
-        cursor: pointer;
-        transition: all ease 0.5s;
-        &:hover {
-            transform: translateY(-5px);
-        }
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  h4 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: white;
+    margin-top: 30px;
+    padding: 10px;
+    border: 1px solid #ccdcff;
+    border-radius: 10px;
+    background-color: #014b7b;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: all ease 0.5s;
+    &:hover {
+      transform: translateY(-5px);
     }
+  }
 `;
 
 const Title = () => {
@@ -86,14 +91,14 @@ const Title = () => {
         <h3>Marketplace</h3>
         <p>Confira nossos produtos</p>
         <GalleryMed>
-          <Image src="src/img/Ems-sem-fundo-logo.png" alt="Marketplace" />
-          <Image src="src/img/Logo_prati.png" alt="Marketplace" />
-          <Image src="src/img/logo-germed.png" alt="Marketplace" />
-          <Image src="src/img/biosintetica.png" alt="Marketplace" />
-          <Image src="src/img/generico-logo.png" alt="Marketplace" />
+          <Image src={img1} alt="Marketplace" />
+          <Image src={img2} alt="Marketplace" />
+          <Image src={img3} alt="Marketplace" />
+          <Image src={img4} alt="Marketplace" />
+          <Image src={img5} alt="Marketplace" />
         </GalleryMed>
         <Promo>
-            <h4>PROMO ATÉ 50% OFF</h4>
+          <h4>PROMO ATÉ 50% OFF</h4>
         </Promo>
       </Marketplace>
     </Container>
