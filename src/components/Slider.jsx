@@ -3,36 +3,36 @@ import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
 // import { sliderItems } from "../data";
 import { useState } from "react";
 
-import "../../src/img/addera.webp";
-import "../../src/img/eno_30.webp";
-import "../../src/img/ibuflex.webp";
-import "../../src/img/image00001.png";
-import "../../src/img/image00002.png";
+import imagem1 from "../../src/img/addera.webp";
+import imagem2 from "../../src/img/eno_30.webp";
+import imagem3 from "../../src/img/ibuflex.webp";
+import imagem4 from "../../src/img/image00001.png";
+import imagem5 from "../../src/img/image00002.png";
 
 const sliderItems = [
   {
     id: 1,
-    img: "../../src/img/addera.webp",
+    img: imagem1,
   },
 
   {
     id: 2,
-    img: "../../src/img/eno_30.webp",
+    img: imagem2,
   },
 
   {
     id: 3,
-    img: "../../src/img/ibuflex.webp",
+    img: imagem3,
   },
 
   {
     id: 4,
-    img: "../../src/img/image00001.png",
+    img: imagem4,
   },
 
   {
     id: 5,
-    img: "../../src/img/image00002.png",
+    img: imagem5,
   },
 ];
 
