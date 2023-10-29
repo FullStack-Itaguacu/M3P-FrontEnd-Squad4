@@ -3,6 +3,7 @@ import styled from "styled-components";
 import axios from "axios";
 import Header from "../components/Header";
 import GlobalStyle from "../components/styled/GlobalStyle";
+import { useNavigate } from "react-router";
 
 const Container = styled.div`
   height: 100vh;
@@ -30,6 +31,7 @@ const Form = styled.form`
 export default function AdminLoginPage() {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     setEmail("");
@@ -45,10 +47,18 @@ export default function AdminLoginPage() {
         {
           email: email,
           password: senha,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
         }
       );
-      console.log("Resposta do servidor:", response.data);
-      alert("Login efetuado com sucesso.");
+
+      const token = response.data.token;
+      localStorage.setItem("token", token);
+
+      navigate("/initial-page-user");
     } catch (error) {
       console.error("Erro ao fazer login:", error.response.data.error);
       alert(error.response.data.error);
