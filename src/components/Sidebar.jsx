@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { BsClipboard2Pulse, BsPeople } from "react-icons/bs";
-import { IoPricetagOutline } from "react-icons/io5";
 import { GoSignOut } from "react-icons/go";
 import { CgShoppingBag } from "react-icons/cg";
 
@@ -28,7 +27,7 @@ const SidebarLink = styled.a`
   display: flex;
   align-items: center;
   padding: 10px;
-  margin-top: 20px;
+  margin-top: 30px;
   text-decoration: none;
   color: inherit;
 
@@ -39,7 +38,7 @@ const SidebarLink = styled.a`
 `;
 
 const SidebarTitle = styled.h4`
-  margin-top: 100px;
+  margin-top: 130px;
   padding: 10px;
 `;
 
@@ -47,11 +46,10 @@ const Sidebar = () => {
   return (
     <SidebarContainer>
       <SidebarTitle>Menu</SidebarTitle>
-      <SidebarLink href="#Resultado Vendas"><BsClipboard2Pulse /> Resultado Vendas</SidebarLink>
-      <SidebarLink href="#produtos"><CgShoppingBag /> Produtos</SidebarLink>
-      <SidebarLink href="#vendas"><IoPricetagOutline /> Vendas</SidebarLink>
-      <SidebarLink href="#usuarios"><BsPeople /> Usuários</SidebarLink>
-      <SidebarLink href="#sair"><GoSignOut /> Sair</SidebarLink>
+      <SidebarLink href="/initial-page-user"><BsClipboard2Pulse /> Vendas</SidebarLink>
+      <SidebarLink href="/register-product"><CgShoppingBag /> Produtos</SidebarLink>
+      <SidebarLink href="/user/admin/signup"><BsPeople /> Usuários</SidebarLink>
+      <SidebarLink href="/admin/login"><GoSignOut /> Sair</SidebarLink>
     </SidebarContainer>
   );
 }

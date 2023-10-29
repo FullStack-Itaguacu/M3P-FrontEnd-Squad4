@@ -1,29 +1,34 @@
+import imagem1 from "./img/addera.webp";
+import imagem2 from "./img/eno_30.webp";
+import imagem3 from "./img/ibuflex.webp";
+import imagem4 from "./img/image00001.png";
+import imagem5 from "./img/image00002.png";
+
 export const sliderItems = [
-    {
-      id: 1,
-      img: "src/img/addera.webp",
-    },
-  
-    {
-      id: 2,
-      img: "src/img/eno_30.webp",
-    },
+  {
+    id: 1,
+    img: imagem1,
+  },
 
-    {
+  {
+    id: 2,
+    img: imagem2,
+  },
+
+  {
     id: 3,
-    img: "src/img/ibuflex.webp",
-    },
+    img: imagem3,
+  },
 
-    {
+  {
     id: 4,
-    img: "src/img/image00001.png",
-    },
+    img: imagem4,
+  },
 
-    {
+  {
     id: 5,
-    img: "src/img/image00002.png",
-    }          
-  ];
+    img: imagem5,
+  },
+];
 
-  //IMPORTANTE: imagens tiradas do site da Panvel, usadas apenas para fins de estudo e sem fins lucrativos ou comerciais (https://www.panvel.com/).
-  
+//IMPORTANTE: imagens tiradas do site da Panvel, usadas apenas para fins de estudo e sem fins lucrativos ou comerciais (https://www.panvel.com/).
