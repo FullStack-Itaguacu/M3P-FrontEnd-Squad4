@@ -16,6 +16,7 @@ const App = () => {
   return (
     <Router>
       <Routes>
+        <Route path="*" element={<MarketplacePage/>} />
         <Route path="/" element={<MarketplacePage />} />
         <Route path="/product/:id" element={<Product />} />
         <Route path="/cart" element={<Cart />} />
