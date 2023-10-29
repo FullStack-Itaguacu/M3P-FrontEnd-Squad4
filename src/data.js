@@ -7,7 +7,7 @@ import imagem5 from "./img/image00002.png";
 export const sliderItems = [
   {
     id: 1,
-    img: "./img/addera.webp",
+    img: imagem1,
   },
 
   {
