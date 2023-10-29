@@ -142,7 +142,7 @@ export default function AdminSignupPage() {
 
     try {
       const response = await axios.post(
-        "http://localhost:3333/api/user/admin/signup",
+        "https://pcs-api-56ex.onrender.com/api/user/admin/signup",
         {
           user: {
             cpf: CPF,
