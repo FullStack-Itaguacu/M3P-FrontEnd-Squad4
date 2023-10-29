@@ -1,41 +1,58 @@
-import React from 'react';
+import { useEffect, useState } from 'react'
+import Card from '../components/Card'
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
+import styled from "styled-components";
 
-const sampleSalesData = [
-  {
-    productId: 1,
-    productName: 'Produto A',
-    quantitySold: 100,
-    unitPrice: 10,
-    totalValue: 1000,
-    productImage: 'URL_da_imagem_A',
-  },
-  {
-    productId: 2,
-    productName: 'Produto B',
-    quantitySold: 50,
-    unitPrice: 20,
-    totalValue: 1000,
-    productImage: 'URL_da_imagem_B',
-  },
-  // Adicione mais vendas fictícias aqui...
-];
+const SectionList = styled.section`
+  width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1.8rem;
+    margin-top: 3rem;
+`;
+function SaleAdmin() {
+    const [repositories, setRepositories] = useState([]);
 
-function AdminSalesPage() {
-  return (
-    <div>
-      {sampleSalesData.map(sale => (
-        <div key={sale.productId} className="sale-card">
-          <img src={sale.productImage} alt={sale.productName} />
-          <div className="product-info">
-            <h3>{sale.productName}</h3>
-            <p>Quantidade Vendida: {sale.quantitySold}</p>
-            <p>Preço Unitário: ${sale.unitPrice}</p>
-            <p>Valor Total: ${sale.totalValue}</p>
-          </div>
-        </div>
-      ))}
-    </div>
-  );
+    useEffect(() => {
+        const queryApi = async () => {
+            const response = await fetch('https://fakestoreapi.com/products?limit=2')
+            const data = await response.json();
+            setRepositories(data);
+        }
+        queryApi();
+    }, [])
+    console.log(repositories);
+    return (
+        <section>
+            <Navbar />
+            <h2>Sales</h2>
+            {
+                repositories.length > 0 ? (
+                    <SectionList>
+                        {
+                            repositories.map((repo) => (
+                                <Card
+                                    key={repo.id}
+                                    productName={repo.category}
+                                    amountBuy={repo.id}
+                                    unitPrice={repo.title}
+                                    total={repo.total}
+                                />
+                            ))
+                        }
+                    </SectionList>
+                ) : (
+                    <p>
+                        Carregando Vendas...
+                    </p>
+                )
+            }
+             <Footer />
+        </section>
+    )
 }
 
-export default AdminSalesPage;
+export default SaleAdmin
