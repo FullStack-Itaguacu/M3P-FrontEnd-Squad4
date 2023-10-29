@@ -122,7 +122,7 @@ const schema = yup.object().shape({
         .string()
         .required('Campo Obrigatório')
         .matches(
-            /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#@$!%*?&])[A-Za-z\d@$!%*?&]*$/,
+            /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#@$!%*?&])[A-Za-z\d#@$!%*?&]*$/,
             'Senha inválida'
         )
         .min(8, 'A senha deve ter no mínimo 8 caracteres, letra maiúscula, minúscula, número e caractere especial'),
