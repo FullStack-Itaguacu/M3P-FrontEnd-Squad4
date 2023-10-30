@@ -8,11 +8,12 @@ import { List } from "../styles/List";
 
 export default function ListUsers() {
   const [users, setUsers] = useState([]);
-  const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize] = useState(20);
   const [totalPages, setTotalPages] = useState(1);
   const [totalUsers, setTotalUsers] = useState(0);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -31,6 +32,7 @@ export default function ListUsers() {
       )
       .then((resposta) => {
         setUsers(resposta.data.users);
+        setSearchResults(resposta.data.users);
         setTotalUsers(resposta.data.count);
         setTotalPages(Math.ceil(resposta.data.count / pageSize));
       })
@@ -39,7 +41,12 @@ export default function ListUsers() {
       });
   }, [currentPage, pageSize]);
 
-  const handleSearch = () => {};
+  const handleSearch = () => {
+    const results = users.filter((user) =>
+      user.fullName.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setSearchResults(results);
+  };
 
   const handlePagination = (page) => {
     if (page < 1) {
@@ -59,8 +66,8 @@ export default function ListUsers() {
             <input
               type="text"
               placeholder="Pesquisar por Nome Completo"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
               style={Input}
             />
           </Column>
@@ -87,7 +94,7 @@ export default function ListUsers() {
             </tr>
           </thead>
           <tbody>
-            {users.map((user) => (
+            {searchResults.map((user) => (
               <tr key={user.id}>
                 <td>{user.id}</td>
                 <td>{user.cpf}</td>
