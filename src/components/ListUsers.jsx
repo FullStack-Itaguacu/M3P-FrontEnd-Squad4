@@ -98,6 +98,7 @@ export default function ListUsers() {
                 <td>{user.typeUser}</td>
                 <td>
                   <input
+                    type="button"
                     value="Editar"
                     onClick={() => openEditModal(user.id)}
                     style={Input}
