@@ -15,11 +15,19 @@ export default function ListUsers() {
   const [totalUsers, setTotalUsers] = useState(0);
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
+
     axios
       .get(
         `https://pcs-api-56ex.onrender.com/api/buyers/admin/${
           (currentPage - 1) * pageSize
-        }/${pageSize}`
+        }/${pageSize}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: token,
+          },
+        }
       )
       .then((resposta) => {
         setUsers(resposta.data.users);
