@@ -97,7 +97,7 @@ const MinhasCompras = styled.div`
   }
 `;
 
-const Login = styled.div`
+const Login = styled(Link)`
   margin-right: 40px;
   color: #014b7b;
   background-color: #fff;
@@ -149,7 +149,7 @@ const Cart = styled.div`
   }
 `;
 
-const Sair = styled.div`
+const Sair = styled(Link)`
   color: white;
   transition: all 0.5s ease;
   cursor: pointer;
@@ -188,8 +188,8 @@ const Navbar = () => {
             </CartLink>
             {quantity > 0 && <span>{quantity}</span>}
           </Cart>
-          <Login>Login</Login>
-          <Sair>Sair</Sair>
+          <Login to="/admin/login">Login</Login>
+          <Sair to="/">Sair</Sair>
         </Right>
       </Wrapper>
     </Container>
